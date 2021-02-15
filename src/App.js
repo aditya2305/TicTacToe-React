@@ -44,8 +44,8 @@ const App = () => {
     else if((itemArray[0]===itemArray[4]) && (itemArray[0]===itemArray[8]) && (itemArray[0] !== "empty")) {
       setWinMessage(`${itemArray[0]} wins`)
     }
-    else if((itemArray[2]===itemArray[4]) && (itemArray[2]===itemArray[6]) && (itemArray[2] !== "empty")) {
-      setWinMessage(`${itemArray[0]} wins`)
+    else if((itemArray[6]===itemArray[4]) && (itemArray[6]===itemArray[2]) && (itemArray[6] !== "empty")) {
+      setWinMessage(`${itemArray[6]} wins`)
     }
   };
 
@@ -68,7 +68,17 @@ const App = () => {
     <Container className="p-5">
       <ToastContainer position="bottom-center" />
       <Row>
-        <Col className="offset-md-3 col-md-6">
+        <Col id="container" className="offset-md-3 col-md-6">
+        <h1 id="h1" className="text-center">Tic Tac Toe</h1>
+        <div className="grid">
+            {itemArray.map((item, index) => (
+              <Card id="box" onClick={()=>changeItem(index)}>
+                <CardBody className="box">
+                  <Icon name={item} />
+                </CardBody>
+              </Card>
+            ))}
+          </div>
         {winMessage ? (
           <div className="mb-2 mt-2">
             <h1 className="text-success text-uppercase text-center">
@@ -79,19 +89,11 @@ const App = () => {
             </Button>
           </div>
         ) : (
-          <h1 className="text-center text-warning">
-          {isCross ? "Cross" : "Circle"} turn
+          <h1 id="h2" className="text-center">
+          {isCross ? "Cross's" : "Circle's"} turn
           </h1>
         )}
-          <div className="grid">
-            {itemArray.map((item, index) => (
-              <Card  color="warning" onClick={()=>changeItem(index)}>
-                <CardBody className="box">
-                  <Icon name={item} />
-                </CardBody>
-              </Card>
-            ))}
-          </div>
+          
         </Col>
       </Row>
     </Container>
